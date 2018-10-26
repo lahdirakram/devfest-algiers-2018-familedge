@@ -1,0 +1,28 @@
+.formulaire{
+
+    width: 80%;
+    margin-left: 10%;
+    border: 1px solid #b0aca5;
+    padding: 15px;
+    box-shadow: 2px 2px 1px 1px;
+    border-radius: 5px;
+}
+
+.next{
+    margin-left: 70%;
+    width: 20%;
+
+}
+.question{
+    margin-left: 10%;
+    width: 80%;
+}
+
+.false{
+    margin-left: 50%;
+    width:10% ;
+}
+.true{
+   margin-left: 15%;
+    width:10% ;
+}
