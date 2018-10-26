@@ -1,55 +1,12 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: okirim
- * Date: 26/10/2018
- * Time: 00:56
- */
-require("menu.php");
-?>
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'head.html' %}
+{% load static %}
+{% block body%}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="description" content="">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-
-    <!-- Title -->
-    <title>Foode - Food Blog HTML5 Template</title>
-
-    <!-- Favicon -->
-    <link rel="icon" href="img/core-img/favicon.ico">
-
-    <!-- Core Stylesheet -->
-    <link rel="stylesheet" href="style.css">
-
-</head>
-
-<body>
-    <!-- ##### Preloader ##### -->
-    <div class="preloader d-flex align-items-center justify-content-center">
-        <div class="circle-preloader">
-            <img src="img/core-img/logo.png" alt="">
-            <div class="foode-preloader">
-                <span></span>
-            </div>
-        </div>
-    </div>
-
-    <!-- ##### Header Area Start ##### -->
-    <?php search(); ?>
-
-    <!-- ##### Header Area End ##### -->
-
-    <!-- ##### Breadcrumb Area Start ##### -->
     <div class="breadcrumb-area">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <img src="img/core-img/breadcrumb-line.png" alt="">
+                    <img src="{% static 'img/core-img/breadcrumb-line.png' %}" alt="">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i> Home</a></li>
@@ -61,20 +18,19 @@ require("menu.php");
             </div>
         </div>
     </div>
-    <!-- ##### Breadcrumb Area End ##### -->
 
-    <!-- ##### Blog Content Area Start ##### -->
+    <!-- ##### Content start ##### -->
     <section class="blog-content-area section-padding-0-100">
         <div class="container">
             <div class="row justify-content-center">
-                <!-- Blog Posts Area -->
+                <!-- osts Area -->
                 <div class="col-12 col-lg-8">
                     <div class="blog-posts-area">
 
                         <!-- Post Details Area -->
                         <div class="single-post-details-area">
                             <div class="post-thumbnail mb-30">
-                                <img src="img/1.jpg" alt="">
+                                <img src="{% static 'img/1.jpg' %}" alt="">
                             </div>
                             <div class="post-content">
                                 <p class="post-date">MAY 8, 2018 / GOOGLE</p>
@@ -88,7 +44,7 @@ require("menu.php");
                                 <p>What hadn’t shown up, however, was the idea that Vietnamese cuisine can be taken seriously, with complex techniques and in a fancier setting. That changed with last December’s opening of Taro, a surprisingly chic bistro in the forever up-and-coming Smichov neighborhood southwest of Old Town. Run by two brothers, Khanh and Giang Ta, Taro has no evening à la carte menu (there is one at lunch), instead offering just two options for dinner: a four-course tasting menu at 890 koruna (about $40) or a seven-course menu at 1,290 koruna per person, not including drinks. Cheap noodles this ain’t.</p>
                                 <blockquote>
                                     <div class="blockquote-icon">
-                                        <img src="img/core-img/quote.png" alt="">
+                                        <img src="{% static 'img/core-img/quote.png' %}" alt="">
                                     </div>
                                     <div class="blockquote-text">
                                         <h6>That’s not to say you’ll have the exact same thing if you stop by: the restaurant’s menus change constantly, based on seasonal ingredients.</h6>
@@ -122,7 +78,7 @@ require("menu.php");
                         <!-- Related Post Area -->
                         <div class="related-posts clearfix">
                             <!-- Line -->
-                            <div class="curve-line bg-img mb-50" style="background-image: url(img/core-img/breadcrumb-line.png);"></div>
+                            <div class="curve-line bg-img mb-50" style="background-image: url({% static 'img/core-img/breadcrumb-line.png %'});"></div>
 
                             <!-- Headline -->
                             <h4 class="headline">Relatest News</h4>
@@ -134,7 +90,7 @@ require("menu.php");
                                     <div class="single-blog-post related-post">
                                         <!-- Thumbnail -->
                                         <div class="post-thumbnail mb-50">
-                                            <a href="#"><img src="img/5.jpg" alt=""></a>
+                                            <a href="#"><img src="{% static 'img/5.jpg' %}" alt=""></a>
                                         </div>
                                         <!-- Content -->
                                         <div class="post-content mb-50">
@@ -156,7 +112,7 @@ require("menu.php");
                                     <div class="single-blog-post related-post">
                                         <!-- Thumbnail -->
                                         <div class="post-thumbnail mb-50">
-                                            <a href="#"><img src="img/6.jpg" alt=""></a>
+                                            <a href="#"><img src="{% static 'img/6.jpg' %}" alt=""></a>
                                         </div>
                                         <!-- Content -->
                                         <div class="post-content mb-50">
@@ -176,7 +132,7 @@ require("menu.php");
                             </div>
 
                             <!-- Line -->
-                            <div class="curve-line bg-img" style="background-image: url(img/core-img/breadcrumb-line.png);"></div>
+                            <div class="curve-line bg-img" style="background-image: url({% static 'img/core-img/breadcrumb-line.png' %});"></div>
                         </div>
 
                         <!-- Comment Area Start -->
@@ -189,7 +145,7 @@ require("menu.php");
                                     <div class="comment-wrapper d-flex">
                                         <!-- Comment Meta -->
                                         <div class="comment-author">
-                                            <img src="img/blog-img/15.jpg" alt="">
+                                            <img src="{% static 'img/blog-img/15.jpg' %}" alt="">
                                         </div>
                                         <!-- Comment Content -->
                                         <div class="comment-content">
@@ -205,7 +161,7 @@ require("menu.php");
                                             <div class="comment-wrapper d-flex">
                                                 <!-- Comment Meta -->
                                                 <div class="comment-author">
-                                                    <img src="img/blog-img/16.jpg" alt="">
+                                                    <img src="{% static 'img/blog-img/16.jpg' %}" alt="">
                                                 </div>
                                                 <!-- Comment Content -->
                                                 <div class="comment-content">
@@ -223,7 +179,7 @@ require("menu.php");
                                     <div class="comment-wrapper d-flex">
                                         <!-- Comment Meta -->
                                         <div class="comment-author">
-                                            <img src="img/blog-img/17.jpg" alt="">
+                                            <img src="{% static 'img/blog-img/17.jpg' %}" alt="">
                                         </div>
                                         <!-- Comment Content -->
                                         <div class="comment-content">
@@ -299,7 +255,7 @@ require("menu.php");
                             <!-- Single Latest Posts -->
                             <div class="single-latest-post d-flex">
                                 <div class="post-thumb">
-                                    <img src="img/2.jpg" alt="">
+                                    <img src="{% static 'img/2.jpg" %'} alt="">
                                 </div>
                                 <div class="post-content">
                                     <a href="#" class="post-title">
@@ -312,7 +268,7 @@ require("menu.php");
                             <!-- Single Latest Posts -->
                             <div class="single-latest-post d-flex">
                                 <div class="post-thumb">
-                                    <img src="img/3.jpg" alt="">
+                                    <img src="{% static 'img/3.jpg' %}" alt="">
                                 </div>
                                 <div class="post-content">
                                     <a href="#" class="post-title">
@@ -325,7 +281,7 @@ require("menu.php");
                             <!-- Single Latest Posts -->
                             <div class="single-latest-post d-flex">
                                 <div class="post-thumb">
-                                    <img src="img/4.jpg" alt="">
+                                    <img src="{% static 'img/4.jpg' %}" alt="">
                                 </div>
                                 <div class="post-content">
                                     <a href="#" class="post-title">
@@ -396,37 +352,37 @@ require("menu.php");
                     <div class="instagram-slides owl-carousel">
                         <!-- Single Instagram Slide -->
                         <div class="single-instagram-slide">
-                            <img src="img/1.jpg" alt="">
+                            <img src="{% static 'img/1.jpg' %}" alt="">
                             <a href="#"><i class="fa fa-instagram"></i>First look</a>
                         </div>
 
                         <!-- Single Instagram Slide -->
                         <div class="single-instagram-slide">
-                            <img src="img/2.jpg" alt="">
+                            <img src="{% static 'img/2.jpg %'}" alt="">
                             <a href="#"><i class="fa fa-instagram"></i>Hard</a>
                         </div>
 
                         <!-- Single Instagram Slide -->
                         <div class="single-instagram-slide">
-                            <img src="img/3.jpg" alt="">
+                            <img src="{% static 'img/3.jpg' %}" alt="">
                             <a href="#"><i class="fa fa-instagram"></i>Not for every one</a>
                         </div>
 
                         <!-- Single Instagram Slide -->
                         <div class="single-instagram-slide">
-                            <img src="img/4.jpg" alt="">
+                            <img src="{% static 'img/4.jpg' %}" alt="">
                             <a href="#"><i class="fa fa-instagram"></i>Basic</a>
                         </div>
 
                         <!-- Single Instagram Slide -->
                         <div class="single-instagram-slide">
-                            <img src="img/5.jpg" alt="">
+                            <img src="{% static 'img/5.jpg' %}" alt="">
                             <a href="#"><i class="fa fa-instagram"></i>Experimental</a>
                         </div>
 
                         <!-- Single Instagram Slide -->
                         <div class="single-instagram-slide">
-                            <img src="img/6.jpg" alt="">
+                            <img src="{% static 'img/6.jpg' %}" alt="">
                             <a href="#"><i class="fa fa-instagram"></i>Very hard</a>
                         </div>
                     </div>
@@ -436,53 +392,4 @@ require("menu.php");
     </div>
     <!-- ##### Instagram Area End ##### -->
 
-
-    <!-- ##### Footer Area Start ##### -->
-    <footer class="footer-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <!-- Footer Curve Line -->
-                    <img class="footer-curve" src="img/core-img/foo-curve.png" alt="">
-                    <!-- Footer Social Info -->
-                    <div class="footer-social-info d-flex align-items-center justify-content-between">
-                        <a href="#"><i class="fa fa-facebook"></i><span>Facebook</span></a>
-                        <a href="#"><i class="fa fa-twitter"></i><span>Twitter</span></a>
-                        <a href="#"><i class="fa fa-google-plus"></i><span>Google +</span></a>
-                        <a href="#"><i class="fa fa-linkedin"></i><span>linkedin</span></a>
-                        <a href="#"><i class="fa fa-instagram"></i><span>Instagram</span></a>
-                        <a href="#"><i class="fa fa-vimeo"></i><span>Vimeo</span></a>
-                        <a href="#"><i class="fa fa-youtube"></i><span>Youtube</span></a>
-                    </div>
-                    <!-- Footer Curve Line -->
-                    <img class="footer-curve" src="img/core-img/foo-curve.png" alt="">
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-12">
-                    <div class="copywrite-text">
-                        <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- ##### Footer Area Start ##### -->
-
-    <!-- ##### All Javascript Script ##### -->
-    <!-- jQuery-2.2.4 js -->
-    <script src="js/jquery/jquery-2.2.4.min.js"></script>
-    <!-- Popper js -->
-    <script src="js/bootstrap/popper.min.js"></script>
-    <!-- Bootstrap js -->
-    <script src="js/bootstrap/bootstrap.min.js"></script>
-    <!-- All Plugins js -->
-    <script src="js/plugins/plugins.js"></script>
-    <!-- Active js -->
-    <script src="js/active.js"></script>
-</body>
-
-</html>
+    {% endblock%}

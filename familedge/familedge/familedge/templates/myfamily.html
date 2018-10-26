@@ -1,10 +1,14 @@
+{% extends 'chart.html' %}
+{% load static %}
+{% block body %}
+
 
     <!-- ##### Breadcrumb Area Start ##### -->
     <div class="breadcrumb-area">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <img src="img/core-img/breadcrumb-line.png" alt="">
+                    <img src="{% static 'img/core-img/breadcrumb-line.png' %}" alt="">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i> Home</a></li>
@@ -16,140 +20,8 @@
         </div>
     </div>
     <!-- ##### Breadcrumb Area End ##### -->
-        <div id="container">
+    <div id="container">
 
-        </div>
     </div>
 
-
-
-    <!-- ##### Footer Area Start ##### -->
-    <footer class="footer-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <!-- Footer Curve Line -->
-                    <img class="footer-curve" src="img/core-img/foo-curve.png" alt="">
-                    <!-- Footer Social Info -->
-                    <div class="footer-social-info d-flex align-items-center justify-content-between">
-                        <a href="#"><i class="fa fa-facebook"></i><span>Facebook</span></a>
-                        <a href="#"><i class="fa fa-twitter"></i><span>Twitter</span></a>
-                        <a href="#"><i class="fa fa-google-plus"></i><span>Google +</span></a>
-                        <a href="#"><i class="fa fa-linkedin"></i><span>linkedin</span></a>
-                        <a href="#"><i class="fa fa-instagram"></i><span>Instagram</span></a>
-                        <a href="#"><i class="fa fa-vimeo"></i><span>Vimeo</span></a>
-                        <a href="#"><i class="fa fa-youtube"></i><span>Youtube</span></a>
-                    </div>
-                    <!-- Footer Curve Line -->
-                    <img class="footer-curve" src="img/core-img/foo-curve.png" alt="">
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-12">
-                    <div class="copywrite-text">
-                        <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- ##### Footer Area Start ##### -->
-
-    <!-- ##### All Javascript Script ##### -->
-    <!-- jQuery-2.2.4 js -->
-    <script src="js/jquery/jquery-2.2.4.min.js"></script>
-    <!-- Popper js -->
-    <script src="js/bootstrap/popper.min.js"></script>
-    <!-- Bootstrap js -->
-    <script src="js/bootstrap/bootstrap.min.js"></script>
-    <!-- All Plugins js -->
-    <script src="js/plugins/plugins.js"></script>
-    <!-- Active js -->
-    <script src="js/active.js"></script>
-
-    <script src="ajax/lib/Chart.js/2.7.3/Chart.js"></script>
-
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-
-    <script>
-    Highcharts.chart('container', {
-  chart: {
-      type: 'area'
-  },
-  title: {
-      text: 'US and USSR nuclear stockpiles'
-  },
-  subtitle: {
-      text: 'Sources: <a href="https://thebulletin.org/2006/july/global-nuclear-stockpiles-1945-2006">' +
-          'thebulletin.org</a> &amp; <a href="https://www.armscontrol.org/factsheets/Nuclearweaponswhohaswhat">' +
-          'armscontrol.org</a>'
-  },
-  xAxis: {
-      allowDecimals: false,
-      labels: {
-          formatter: function () {
-              return this.value; // clean, unformatted number for year
-          }
-      }
-  },
-  yAxis: {
-      title: {
-          text: 'Nuclear weapon states'
-      },
-      labels: {
-          formatter: function () {
-              return this.value / 1000 + 'k';
-          }
-      }
-  },
-  tooltip: {
-      pointFormat: '{series.name} had stockpiled <b>{point.y:,.0f}</b><br/>warheads in {point.x}'
-  },
-  plotOptions: {
-      area: {
-          pointStart: 1940,
-          marker: {
-              enabled: false,
-              symbol: 'circle',
-              radius: 2,
-              states: {
-                  hover: {
-                      enabled: true
-                  }
-              }
-          }
-      }
-  },
-  series: [{
-      name: 'USA',
-      data: [
-          null, null, null, null, null, 6, 11, 32, 110, 235,
-          369, 640, 1005, 1436, 2063, 3057, 4618, 6444, 9822, 15468,
-          20434, 24126, 27387, 29459, 31056, 31982, 32040, 31233, 29224, 27342,
-          26662, 26956, 27912, 28999, 28965, 27826, 25579, 25722, 24826, 24605,
-          24304, 23464, 23708, 24099, 24357, 24237, 24401, 24344, 23586, 22380,
-          21004, 17287, 14747, 13076, 12555, 12144, 11009, 10950, 10871, 10824,
-          10577, 10527, 10475, 10421, 10358, 10295, 10104, 9914, 9620, 9326,
-          5113, 5113, 4954, 4804, 4761, 4717, 4368, 4018
-      ]
-  }, {
-      name: 'USSR/Russia',
-      data: [null, null, null, null, null, null, null, null, null, null,
-          5, 25, 50, 120, 150, 200, 426, 660, 869, 1060,
-          1605, 2471, 3322, 4238, 5221, 6129, 7089, 8339, 9399, 10538,
-          11643, 13092, 14478, 15915, 17385, 19055, 21205, 23044, 25393, 27935,
-          30062, 32049, 33952, 35804, 37431, 39197, 45000, 43000, 41000, 39000,
-          37000, 35000, 33000, 31000, 29000, 27000, 25000, 24000, 23000, 22000,
-          21000, 20000, 19000, 18000, 18000, 17000, 16000, 15537, 14162, 12787,
-          12600, 11400, 5500, 4512, 4502, 4502, 4500, 4500
-      ]
-  }]
-});
-    </script>
-
-</body>
-
-</html>
+{% endblock %}
