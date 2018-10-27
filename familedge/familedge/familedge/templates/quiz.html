@@ -1,4 +1,5 @@
 {% extends 'head.html' %}
+{% block title %}Quiz{% endblock %}
 {% load static %}
 {% block body%}
 
@@ -20,15 +21,73 @@
     </div>
     <!-- ##### Breadcrumb Area End ##### -->
 
+        <div class="container">
+            <div class="formulaire" id="formulaire" {% if play_quiz is None %} style="display: none;" {% endif %}>
+                <form>
+                <div>
+                    <p class="question">{{play_quiz.quiz.title}}</p>
+                </div>
+                <div >
+                    <p class="question" id="qst"></p>
+                    <button type="button" class="btn btn-info true"  onclick="next('vrai')"><i class=" fa fa-check "></i></button>
+                    <button type="button" class="btn btn-info false" onclick="next('faux')"><i class=" fa ">X</i></button>
+                </div>
+                <script type="text/javascript">
+                    function quiz(i,q) {
+                        document.getElementById('qst').innerHTML=q[i][0];
+                    }
+                    function next(rpns) {
+                        if (rpns == qsts[i][1]) {
+                            document.getElementById('formulaire').style="background-color : green;";
+                            setTimeout(function () {
+                                document.getElementById('formulaire').style="background-color : white;";
+                            },500);
+                            score++;
+                        }else{
+                            document.getElementById('formulaire').style="background-color : red;";
+                            setTimeout(function () {
+                                document.getElementById('formulaire').style="background-color : white;";
+                            },500);
+                        }
+                        if (qsts.length-1>i) {   
+                            i++;
+                            quiz(i,qsts);
+                        }else{
+
+                            $.ajax({
+                                url:"{% url 'hist' %}",
+                                type:"POST",
+                                data:{sc : score,quiz_id : '{{play_quiz.quiz.id}}', csrfmiddlewaretoken : '{{csrf_token}}'},
+                                success:function (res) {
+                                    alert(res['reponse']);
+                                    document.getElementById('formulaire').style="display:none;"
+                                }
+                            });
+                        }
+                    }
+
+                    qsts=[{% for qs in play_quiz.qst %}['{{qs.description}}','{{qs.reponse}}'] {%if not forloop.last %},{% endif %}{% endfor %}];
+                    i=0;
+                    score=0;
+                    quiz(i,qsts);
 
 
-    <!-- ##### Quiz Discipline Area Start ##### -->
+
+
+                </script>
+            </form>
+        </div>
+    </div>
+
+    <br><br><br>
+
+    {% for qq in disip_quiz %}
     <div class="follow-us-instagram">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="section-heading">
-                        <span>@Technologie</span>
+                        <span>{{qq.disipline.title}}</span>
                     </div>
                 </div>
             </div>
@@ -36,106 +95,20 @@
             <div class="row">
                 <div class="col-12">
                     <div class="instagram-slides owl-carousel">
-                        <!-- Single Instagram Slide -->
+                        {% for qs in qq.quiz%}
                         <div class="single-instagram-slide">
-                            <img src="{% static 'img/1.jpg' %}" alt="">
-                            <a href="#"><i class="fa fa-instagram"></i>First look</a>
+                            <img src="{{qs.image.url}}" style="max-height: 100px">
+                            <a href="{% url 'quiz' %}?quiz_id={{qs.id}}">{{qs.title}}</a>
                         </div>
+                        {% endfor %}
 
-                        <!-- Single Instagram Slide -->
-                        <div class="single-instagram-slide">
-                            <img src="{% static 'img/2.jpg' %}" alt="">
-                            <a href="#"><i class="fa fa-instagram"></i>Hard</a>
-                        </div>
-
-                        <!-- Single Instagram Slide -->
-                        <div class="single-instagram-slide">
-                            <img src="{% static 'img/3.jpg' %}" alt="">
-                            <a href="#"><i class="fa fa-instagram"></i>Not for every one</a>
-                        </div>
-
-                        <!-- Single Instagram Slide -->
-                        <div class="single-instagram-slide">
-                            <img src="{% static 'img/4.jpg' %}" alt="">
-                            <a href="#"><i class="fa fa-instagram"></i>Basic</a>
-                        </div>
-
-                        <!-- Single Instagram Slide -->
-                        <div class="single-instagram-slide">
-                            <img src="{% static 'img/5.jpg' %}" alt="">
-                            <a href="#"><i class="fa fa-instagram"></i>Experimental</a>
-                        </div>
-
-                        <!-- Single Instagram Slide -->
-                        <div class="single-instagram-slide">
-                            <img src="{% static 'img/6.jpg' %}" alt="">
-                            <a href="#"><i class="fa fa-instagram"></i>Very hard</a>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- ##### Quiz Discipline Area End ##### -->
-
-    <!-- Footer Curve Line -->
-    <br><br><br>
+    <br>
     <img class="footer-curve" src="{% static 'img/core-img/foo-curve.png' %}" alt="">
-    <br><br><br>
-
-    <!-- ##### Quiz Discipline Area Start ##### -->
-    <div class="follow-us-instagram">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-heading">
-                        <span>@History</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-12">
-                    <div class="instagram-slides owl-carousel">
-                        <!-- Single Instagram Slide -->
-                        <div class="single-instagram-slide">
-                            <img src="{% static 'img/1.jpg' %}" alt="">
-                            <a href="question.php"><i class="fa fa-instagram"></i>First look</a>
-                        </div>
-
-                        <!-- Single Instagram Slide -->
-                        <div class="single-instagram-slide">
-                            <img src="{% static 'img/2.jpg' %}" alt="">
-                            <a href="question.php"><i class="fa fa-instagram"></i>Hard</a>
-                        </div>
-
-                        <!-- Single Instagram Slide -->
-                        <div class="single-instagram-slide">
-                            <img src="{% static 'img/3.jpg' %}" alt="">
-                            <a href="question.php"><i class="fa fa-instagram"></i>Not for every one</a>
-                        </div>
-
-                        <!-- Single Instagram Slide -->
-                        <div class="single-instagram-slide">
-                            <img src="{% static 'img/4.jpg' %}" alt="">
-                            <a href="question.php"><i class="fa fa-instagram"></i>Basic</a>
-                        </div>
-
-                        <!-- Single Instagram Slide -->
-                        <div class="single-instagram-slide">
-                            <img src="{% static 'img/5.jpg' %}" alt="">
-                            <a href="#"><i class="fa fa-instagram"></i>Experimental</a>
-                        </div>
-
-                        <!-- Single Instagram Slide -->
-                        <div class="single-instagram-slide">
-                            <img src="{% static 'img/6.jpg' %}" alt="">
-                            <a href="#"><i class="fa fa-instagram"></i>Very hard</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ##### Quiz Discipline Area End ##### -->
+    <br>
+    {% endfor %}
     {% endblock%}

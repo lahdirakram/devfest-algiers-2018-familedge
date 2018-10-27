@@ -15,16 +15,10 @@ class user(models.Model):
 	
 	name=models.TextField()
 	password=models.TextField()
-	family=models.ForeignKey(family,on_delete=models.CASCADE,null=False)
+	fami=models.ForeignKey(family,on_delete=models.CASCADE,null=False)
 
 	def __str__(self):
 		return self.name;
-	
-	def family(self):
-		try:
-			return family.objects.get(name=self.family)
-		except:
-			return None
 		
 	@staticmethod	
 	def connect(n,p):
@@ -39,11 +33,15 @@ class user_disipline(models.Model):
 
 	@staticmethod
 	def user_disip(u):
-		return user_disip.objects.filter(user=u)
+		d=[]
+		for ud in user_disipline.objects.filter(user=u):
+			d.append(ud.disipline)
+
+		return d
 
 	@staticmethod
 	def disipline_users(d):
-		return user_disip.objects.filter(disipline=d)
+		return user_disipline.objects.filter(disipline=d)
 class userbis(models.Model):
 	
 	user=models.ForeignKey(user,on_delete=models.CASCADE,null=False)
@@ -81,7 +79,7 @@ class history(models.Model):
 	def user_hist(u):
 		return history.objects.filter(user=u)
 
-class objective(models.Model):
+class goals(models.Model):
 
 	user=models.ForeignKey(user,on_delete=models.CASCADE,null=True)
 	deadline=models.DateField()
@@ -90,12 +88,12 @@ class objective(models.Model):
 
 	@staticmethod
 	def new_objective(u,g,p):
-		objective.objects.create(user=u,deadline=(datetime.date.today() + relativedelta(months=1)),goal=g)
+		goals.objects.create(user=u,deadline=(datetime.date.today() + relativedelta(months=1)),goal=g)
 
 	@staticmethod
 	def get_current_objective(u):
 		try:
-			return objective.objects.get(user=u)
+			return goals.objects.get(user=u)
 		except:
 			return None			
 		

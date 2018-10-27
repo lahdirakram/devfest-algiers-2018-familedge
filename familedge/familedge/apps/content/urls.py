@@ -6,6 +6,8 @@ from . import views
 
 urlpatterns = [
     re_path(r'^home/$', views.home,name="home"),
-    re_path(r'^quiz/', views.quiz,name="quiz"),
+    re_path(r'^post/$', views.post,name="post"),
+    re_path(r'^quiz/$', views.quizView,name="quiz"),
+
 
 ]

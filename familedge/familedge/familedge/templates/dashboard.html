@@ -1,0 +1,52 @@
+{% extends 'chart.html' %}
+{% block title %}Dashboard{% endblock %}
+{% load static %}
+{% block body %}
+    <!-- ##### Breadcrumb Area Start ##### -->
+    <div class="breadcrumb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <img src="{% static 'img/core-img/breadcrumb-line.png' %}" alt="">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">dashboard</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Breadcrumb Area End ##### -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <p>Famile classement</p>
+                <table class="table table-sm table-sm-responsive">
+                    <thead>
+                        <th>Nom</th>
+                        <th>Nombre de quiz</th>
+                        <th>Score</th>
+                    </thead>
+                    <tbody>
+                        <tr><td>Akram</td><td>15</td><td>10</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <p>Objectifs </p>
+                <div style="text-align: center;">
+                    <p style="display: inline-block;font-size: 70px;">{{obj.progress}}</p><p style="display: inline-block;font-size: 30px;">/{{obj.goal}}</p>  
+                </div>
+
+
+                
+            </div>
+        </div>
+        <div id="container"></div>    
+    </div>
+    
+
+
+{% endblock %}

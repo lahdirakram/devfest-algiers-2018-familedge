@@ -18,10 +18,15 @@ from django.urls import path, re_path,include
 from . import  settings
 from django.contrib.staticfiles.urls import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from . import views
+from apps.content import views
 urlpatterns = [
     re_path(r'^admin/', admin.site.urls),
     re_path(r'^user/',include('apps.users.urls')),
     re_path(r'^content/',include('apps.content.urls')),
-    re_path(r'^$',views.landpage,name="landpage")
+    re_path(r'^$',views.home,name="landpage")
 ]
+urlpatterns += staticfiles_urlpatterns()
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+

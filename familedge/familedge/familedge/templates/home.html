@@ -1,0 +1,96 @@
+{% extends 'head.html' %}
+{% load static %}
+{% block title %}Home{% endblock %}
+{% block body%}
+
+
+<!-- ##### Hero Area Start ##### -->
+<section class="hero-area">
+<div class="hero-post-slides owl-carousel">
+    {% for art in articles_list %}
+    <!-- Single Hero Post -->
+    <div class="single-hero-post">
+        <a href="{% url 'post' %}?article_id={{art.id}}" class="post-title">
+        <!-- Post Image -->
+        <div class="slide-img bg-img" style="background-image: url({{art.image.url}});"></div>
+        <!-- Post Content -->
+        <div class="hero-slides-content">
+            <p>{{art.date}}</p>
+            <a href="{% url 'post' %}?article_id={{art.id}}" class="post-title">
+                <h4>{{art.title}}</h4>
+            </a>
+        </div>
+        </a>
+    </div>
+    {% endfor%}
+</div>
+</section>
+<!-- ##### Hero Area End ##### -->
+
+<!-- ##### Blog Content Area Start ##### -->
+<section class="blog-content-area section-padding-100">
+    <div class="container">
+        <div class="row">
+            <!-- Featured Post Area -->
+            <div class="col-12" id="disiplinelist">
+                <div class="featured-post-area">
+                    {% for disp_arts in disip_articles %}
+                    <div id="disipline{{disp_arts.disipline.id}}" {% if not forloop.first %} style="display: none;" {% endif %}>
+                        <div id="featured-post-slides" class="carousel slide d-flex flex-wrap" data-ride="carousel">
+
+                            <div class="carousel-inner">
+                                <div class="carousel-item active bg-img" style="background-image: url('{{disp_arts.disipline.image.url}}');">
+                                    <div class="featured-post-content">
+                                        <p>{{disp_arts.disipline.title}}</p>
+                                        <span class="post-title">
+                                            <h2 class="post-title" style="color: white;">{{disp_arts.disipline.quote}}</h2>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <ol class="carousel-indicators">
+                                {% for a in disp_arts.arts%}
+                                <li data-target="#featured-post-slides" onmouseenter="$(this).addClass('active')" onmouseleave="$(this).removeClass('active')">
+                                    <a href="{% url 'post' %}?article_id={{a.id}}" class="post-title">
+                                    <h2>{{a.title}}</h2>
+                                        <nav>{{a.author}}</nav>
+                                    </a>
+                                </li>
+                                {% endfor %}
+                                <li data-target="#featured-post-slides" data-slide-to="0" >
+                                    <h2></h2>
+                                    <a href="#" class="post-title">
+                                        <nav></nav>
+                                    </a>
+                                </li>
+                                <li data-target="#featured-post-slides" data-slide-to="0" >
+                                    <h2></h2>
+                                    <a href="#" class="post-title">
+                                        <nav></nav>
+                                    </a>
+                                </li>
+                                <li data-target="#featured-post-slides" data-slide-to="0" >
+                                    <h2></h2>
+                                    <a href="#" class="post-title">
+                                        <nav></nav>
+                                    </a>
+                                </li>
+                                <li data-target="#featured-post-slides" data-slide-to="0" >
+                                    <h2></h2>
+                                    <a href="#" class="post-title">
+                                        <nav></nav>
+                                    </a>
+                                </li>
+                            </ol>
+
+                        </div>
+                    </div>
+                    <script type="text/javascript">{% if forloop.first %}shown='#disipline{{disp_arts.disipline.id}}';{% endif %}</script>
+                    {% endfor %}
+                </div>
+            </div>
+    </div>
+</section>
+
+{% endblock%}
