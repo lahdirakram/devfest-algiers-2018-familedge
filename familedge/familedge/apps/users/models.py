@@ -10,6 +10,9 @@ class family(models.Model):
 
 	def __str__(self):
 		return self.name
+	@staticmethod
+	def members(f):
+		return user.objects.filter(fami=f)
 
 class user(models.Model):
 	

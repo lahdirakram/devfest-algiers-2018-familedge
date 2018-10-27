@@ -30,7 +30,9 @@
                         <th>Score</th>
                     </thead>
                     <tbody>
-                        <tr><td>Akram</td><td>15</td><td>10</td></tr>
+                        {% for a in hist %}
+                        <tr><td>{{a.user.name}}</td><td>{{a.nbrquiz}}</td><td>{{a.sumscore}}</td></tr>
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>

@@ -3,6 +3,7 @@ from .models import *
 from familedge.functions import checkuser
 from django.http import HttpResponse,JsonResponse
 from django.utils.crypto import get_random_string
+import json
 # Create your views here.
 def connect(request):
 	
@@ -34,8 +35,8 @@ def hist(request):
 	 	return redirect('landpage')
 
 	if request.method=="POST":
-		
-		return JsonResponse({'reponse':history.add_hist(user,quiz.objects.get(id=request.POST.get('quiz_id')),request.POST.get('sc'))})
+		history.add_hist(user,quiz.objects.get(id=request.POST.get('quiz_id')),request.POST.get('sc'))
+		return JsonResponse({'reponse':request.POST.get('sc')})
 
 def objective(request):
 	
@@ -56,10 +57,26 @@ def objective(request):
 
 def dashboard(request):
 	connected=True
-	user = checkuser(request)
-	if user == None:
+	u = checkuser(request)
+	if u == None:
 		return redirect('home')
 
-	o=goals.get_current_objective(user)
+	o=goals.get_current_objective(u)
+	hist=[]
+	for onehist in history.objects.raw("select id,user_id,count(quiz_id) nbrquiz,sum(score) sumscore from users_history group by user_id order by sum(score) desc"):
+		hist.append({'user':user.objects.get(id=onehist.user_id),'nbrquiz':onehist.nbrquiz,'sumscore':onehist.sumscore})
 
-	return render(request,'dashboard.html',{'connected':connected,'obj':o})
+	graphdata=[]
+	for a in family.members(u.fami):
+		onemember={'name':a.name,'data':[]}
+		for onegraph in history.objects.raw('select id,date,count(quiz_id) nbrquiz,sum(score) sumscore from users_history where user_id ='+str(a.id)+' order by date desc'):
+			onemember['data'].append([onegraph.date.strftime("Date.UTC(%Y,%m,%d)"),onegraph.sumscore])
+		graphdata.append(onemember)
+
+	resu = json.dumps(graphdata)	
+
+
+	print(resu)
+
+
+	return render(request,'dashboard.html',{'connected':connected,'obj':o,'hist':hist,'graphdata':resu})

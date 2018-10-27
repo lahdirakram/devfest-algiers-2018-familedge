@@ -59,8 +59,8 @@
                                 type:"POST",
                                 data:{sc : score,quiz_id : '{{play_quiz.quiz.id}}', csrfmiddlewaretoken : '{{csrf_token}}'},
                                 success:function (res) {
-                                    alert(res['reponse']);
-                                    document.getElementById('formulaire').style="display:none;"
+                                    //alert(res['reponse']);
+                                    document.getElementById('formulaire').innerHTML='<h1>Score :'+score+'</h1>';
                                 }
                             });
                         }
