@@ -17,12 +17,12 @@
     margin-left: 10%;
     width: 80%;
 }
-
+#qsthouse{
+    text-align: center;
+}
 .false{
-    margin-left: 50%;
-    width:10% ;
+    width:20% ;
 }
 .true{
-   margin-left: 15%;
-    width:10% ;
+    width:20% ;
 }

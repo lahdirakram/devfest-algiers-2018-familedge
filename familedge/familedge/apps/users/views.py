@@ -69,8 +69,11 @@ def dashboard(request):
 	graphdata=[]
 	for a in family.members(u.fami):
 		onemember={'name':a.name,'data':[]}
-		for onegraph in history.objects.raw('select id,date,count(quiz_id) nbrquiz,sum(score) sumscore from users_history where user_id ='+str(a.id)+' order by date desc'):
-			onemember['data'].append([onegraph.date.strftime("Date.UTC(%Y,%m,%d)"),onegraph.sumscore])
+		ccc=[]
+		for onegraph in history.objects.raw('select id,date nbrquiz,sum(score) sumscore from users_history where user_id ='+str(a.id)+' order by date desc'):
+			ccc.append([onegraph.date.strftime("Date.UTC(%Y,%m,%d)"),onegraph.sumscore])
+
+		onemember['data']=ccc
 		graphdata.append(onemember)
 
 	resu = json.dumps(graphdata)	
